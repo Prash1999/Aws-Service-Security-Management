@@ -1,0 +1,27 @@
+<app-navigation></app-navigation>
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>Documents</th>
+                <th>Visibility</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let document of documents">
+                <td><b>{{document.documentName}}</b></td>
+                <td><b><span *ngFor="let permission of document.permissions; let i=index"><span
+                                *ngIf="permission == 'all' else permissionTemplate">Public</span>
+                            <ng-template #permissionTemplate><span>{{permission}}<span
+                                        *ngIf="i != document.permissions.length - 1">,<br></span> </span></ng-template>
+                        </span><span *ngIf="document.permissions.length == 0">Private </span> </b></td>
+                <td><button type="button" class="btn btn-outline-primary" *ngIf="document.permissions.length > 0"
+                        (click)="onSubmit(document.documentName, document.permissions)">Remediate</button>
+                    <span *ngIf="document.permissions.length == 0">
+                        <b>Document is private</b>
+                    </span>
+                </td>
+            </tr>
+    </table>
+</div>

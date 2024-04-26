@@ -1,0 +1,19 @@
+<app-navigation></app-navigation>
+<body>
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th>Buckets</th>
+            <th>Public Block Access</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor = "let bucket of bucketsWithPublicBlockAccessInfo">
+            <td><b>{{bucket.Name}}</b></td>
+            <td><button type="button" class="btn btn-outline-primary" *ngIf="!bucket.status" (click)="onSubmit(bucket.Name)">Remediate</button>
+          <span *ngIf="bucket.status"><b>Public Access is Blocked</b></span></td>
+        </tr>
+    </table>
+  </div>
+</body>

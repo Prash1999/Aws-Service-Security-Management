@@ -1,0 +1,24 @@
+<app-navigation></app-navigation>
+<div class="table-wrapper">
+  <table class="fl-table">
+    <thead>
+      <tr>
+        <th>Users</th>
+        <th>Permissions</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td><b>{{user.userName}}</b></td>
+        <td><b><span *ngFor="let policy of user.policies; let i=index">{{policy.PolicyName}} <span
+          *ngIf="i != user.policies.length - 1">,<br></span></span><span *ngIf="user.policies.length == 0"> No Permissions</span> </b></td>
+        <td><button type="button" class="btn btn-outline-primary" *ngIf="user.policies.length > 0"
+            (click)="onSubmit(user.userName, user.policies)">Remediate</button>
+          <span *ngIf="user.policies.length == 0">
+            <b>No Permissions has attached</b>
+          </span>
+        </td>
+      </tr>
+  </table>
+</div>
